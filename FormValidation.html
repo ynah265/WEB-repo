@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Validation with Regex</title>
+</head>
+<body>
+  <form id="myForm">
+    <label for="inputField">Enter an alphanumeric value:</label>
+    <input type="text" id="inputField" />
+    <p id="errorMessage" style="color: red; display: none;">Input must be alphanumeric!</p>
+    <button type="submit">Submit</button>
+    <p id="successMessage" style="color: green; display: none;">Form submitted successfully!</p>
+  </form>
+
+  <script>
+    // Retrieve the input field element
+    const form = document.getElementById('myForm');
+    const inputField = document.getElementById('inputField');
+    const errorMessage = document.getElementById('errorMessage');
+    const successMessage = document.getElementById('successMessage');
+
+    // Add an event listener for form submission
+    form.addEventListener('submit', function(event) {
+      // Regular expression for alphanumeric characters
+      const alphanumericRegex = /^[a-zA-Z0-9]+$/;
+
+      // Get the input value
+      const inputValue = inputField.value;
+
+      // Check if the input matches the alphanumeric pattern
+      if (!alphanumericRegex.test(inputValue)) {
+        // Display error message and prevent form submission
+        errorMessage.style.display = 'block';
+        successMessage.style.display = 'none';
+        event.preventDefault(); // Prevent the form from submitting
+      } else {
+        // Hide error message, display confirmation, and 'submit' form
+        errorMessage.style.display = 'none';
+        successMessage.style.display = 'block';
+        event.preventDefault(); // Just to simulate submission
+      }
+    });
+  </script>
+</body>
+</html>
